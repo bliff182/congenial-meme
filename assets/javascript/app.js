@@ -4,17 +4,28 @@ $(document).ready(function () {
         $('#myInput').trigger('focus')
     }) */
 
-    $("#team-submit").on("click", function() {
-        var team = $("#team-selection").val().trim();
-        // console.log(team);
+    $("#team-submit").on("click", function () {
+        var team = $("#team-selection").val().trim().split(/\s+/).join('-');
+        console.log(team);
 
-        var queryUrl = "https://newsapi.org/v2/everything?country=us&category=sports&q=" + team + "&apiKey=661826d0bdfe4381ace783308aa9216c";
+        var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + team + 
+        "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
+
+        var seatgeekUrl = "https://api.seatgeek.com/2/events?performers.slug=" + team + "&client_id=MTkwNTE3NjN8MTU3MTg1OTczOS4yNA";
 
         $.ajax({
-            url: queryUrl,
+            url: newsUrl,
             method: "GET"
-        }).then(function(response) {
+        }).then(function (response) {
             console.log(response);
+        });
+
+        $.ajax({
+            url: seatgeekUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            // console.log(response.events);
         });
 
     });
