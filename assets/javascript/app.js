@@ -40,16 +40,11 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response);
             var gameStats = response.scoreboard.gameScore;
-            // for (var i = 0; i < gameStats.length; i++) {
-            // console.log(gameStats[0].game.awayTeam.City);
-            // }
+            
             console.log("Away team: " + gameStats[0].game.awayTeam.City + " " + gameStats[0].game.awayTeam.Name);
             console.log("Home Team: " + gameStats[0].game.homeTeam.City + " " + gameStats[0].game.homeTeam.Name);
-            console.log(gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].awayScore);
-            console.log(gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].homeScore);
-            // for (var i = 0; i < gameStats[0].quarterSummary.quarter.length; i++);
+
             console.log("Quarter Summary:")
-            console.log(gameStats[0].quarterSummary.quarter.length);
             for (var i = 0; i < gameStats[0].quarterSummary.quarter.length; i++) {
                 console.log("Q1: " + gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].awayScore + " " + gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].homeScore);
             }
@@ -57,10 +52,6 @@ $(document).ready(function () {
             console.log(gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].awayScore);
             console.log(gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].homeScore);
 
-            /* console.log(gameStats[0].quarterSummary.quarter.length);
-            for (var i = 0; i < gameStats[0].quarterSummary.quarter.length; i++) {
-                console.log("Q1: " + gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].awayScore + " " + gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].homeScore);
-            } */
         });
 
     });
