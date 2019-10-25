@@ -1,0 +1,46 @@
+body {
+    background-image: url("https://i.pinimg.com/originals/32/1a/05/321a052dbafe29e84e5bae129a0f602e.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+
+}
+#superfan {
+    background-color: #F01212;
+    font-family: 'Righteous', cursive;
+}
+
+.nav-link{
+font-family: 'Righteous', cursive;
+
+}
+
+#superfan-jumbotron {
+    font-family: 'Exo 2', sans-serif;
+    margin-top: 10px;
+}
+#articles {
+    
+    background-color: white;
+    margin-bottom: auto;
+    border-radius: 10px;
+    
+    }
+.mt-0 {
+    font-family: 'Arvo', serif;
+}
+
+#boxscore {
+    color: #F7F1F1;
+}
+
+.footer {
+    text-align: center;
+    
+}
+
+
+
+
+

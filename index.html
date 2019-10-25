@@ -50,8 +50,8 @@
     </div>
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+        <a class="navbar-brand" href="#" id="superfan">Superfan</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -60,26 +60,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" id="news">News<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" id="scores">Scores<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" id="schedule">Schedule<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" id="standings">Standings<span class="sr-only">(current)</span></a>
                 </li>
+
+
             </ul>
             <!-- <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -91,7 +84,7 @@
     <!-- jumbotron -->
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-4">Superfan</h1>
+            <h1 class="display-4" id="superfan-jumbotron">Superfan</h1>
             <p class="lead">Just playing around with a sample layout. Seeing what components work well with what we're
                 going
                 for, we can always add or remove things or move stuff around.</p>
@@ -107,11 +100,11 @@
     <!-- bootstrap media object, potential article section? -->
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-7" id="boxscore">
                 <p>Boxscore could go here.</p>
             </div>
 
-            <div class="col-md-5">
+            <div class="col-md-5" id="articles">
                 <div class="media">
                     <!-- <img src="..." class="mr-3" alt="..."> -->
                     <div class="media-body">
@@ -155,6 +148,10 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <div>
+        <footer class="footer">Copyright</footer>
+    </div>
+    </div>
 </body>
 
 </html>
