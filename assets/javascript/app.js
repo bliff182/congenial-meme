@@ -16,20 +16,20 @@ $(document).ready(function () {
         var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/scoreboard.json?fordate=20191013&team=" + team;
         // var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/game_boxscore.json?gameid=20190905-GB-CHI"
 
-        $.ajax({
-            url: newsUrl,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-        });
-
-        $.ajax({
-            url: seatgeekUrl,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
-            // console.log(response.events);
-        });
+        /*  $.ajax({
+             url: newsUrl,
+             method: "GET"
+         }).then(function (response) {
+             // console.log(response);
+         });
+ 
+         $.ajax({
+             url: seatgeekUrl,
+             method: "GET"
+         }).then(function (response) {
+             // console.log(response);
+             // console.log(response.events);
+         }); */
 
         $.ajax({
             url: mySportsFeedsUrl,
@@ -39,6 +39,28 @@ $(document).ready(function () {
             },
         }).then(function (response) {
             console.log(response);
+            var gameStats = response.scoreboard.gameScore;
+            // for (var i = 0; i < gameStats.length; i++) {
+            // console.log(gameStats[0].game.awayTeam.City);
+            // }
+            console.log("Away team: " + gameStats[0].game.awayTeam.City + " " + gameStats[0].game.awayTeam.Name);
+            console.log("Home Team: " + gameStats[0].game.homeTeam.City + " " + gameStats[0].game.homeTeam.Name);
+            console.log(gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].awayScore);
+            console.log(gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].homeScore);
+            // for (var i = 0; i < gameStats[0].quarterSummary.quarter.length; i++);
+            console.log("Quarter Summary:")
+            console.log(gameStats[0].quarterSummary.quarter.length);
+            for (var i = 0; i < gameStats[0].quarterSummary.quarter.length; i++) {
+                console.log("Q1: " + gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].awayScore + " " + gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].homeScore);
+            }
+            console.log("FINAL");
+            console.log(gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].awayScore);
+            console.log(gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].homeScore);
+
+            /* console.log(gameStats[0].quarterSummary.quarter.length);
+            for (var i = 0; i < gameStats[0].quarterSummary.quarter.length; i++) {
+                console.log("Q1: " + gameStats[0].game.awayTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].awayScore + " " + gameStats[0].game.homeTeam.Abbreviation + ": " + gameStats[0].quarterSummary.quarter[i].homeScore);
+            } */
         });
 
     });
