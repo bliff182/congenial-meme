@@ -4,9 +4,8 @@ $(document).ready(function () {
         $('#myInput').trigger('focus')
     }) */
 
-    // var team;
-    var teamAbbr;
     var team;
+    var teamAbbr;
     var teamDashed;
 
     $(".dropdown-item").on("click", function() {
@@ -21,9 +20,6 @@ $(document).ready(function () {
 
     $("#team-submit").on("click", function () {
         event.preventDefault();
-
-        console.log(team);
-        console.log(teamAbbr);
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
@@ -50,6 +46,20 @@ $(document).ready(function () {
                 console.log("Link: " + article[i].url);
                 console.log("==========================================");
 
+                var articleDiv = $("<div>");
+                articleDiv.addClass("article-content");
+
+                var articleTitle = $("<h5>").text(article[i].title);
+                var articleAuthor = $("<p>").text("By: " + article[i].author);
+                var articleSource = $("<p>").text("Source: " + article[i].source.name);
+                var articleUrl = $("<p>").text("Link: " + article[i].url);
+
+                articleDiv.append(articleTitle);
+                articleDiv.append(articleAuthor);
+                articleDiv.append(articleSource);
+                articleDiv.append(articleUrl);
+
+                $("#articles").append(articleDiv);
             }
         });
 
