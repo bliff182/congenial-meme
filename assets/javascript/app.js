@@ -16,21 +16,50 @@ $(document).ready(function () {
         var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/scoreboard.json?fordate=20191013&team=" + team;
         // var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/game_boxscore.json?gameid=20190905-GB-CHI"
 
-        /*  $.ajax({
-             url: newsUrl,
-             method: "GET"
-         }).then(function (response) {
-             // console.log(response);
-         });
- 
-         $.ajax({
-             url: seatgeekUrl,
-             method: "GET"
-         }).then(function (response) {
-             // console.log(response);
-             // console.log(response.events);
-         }); */
+        // NEWS AJAX CALL
+        // ========================================================================================
+        $.ajax({
+            url: newsUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
 
+            var article = response.articles;
+
+            for (var i = 0; i < 10; i++) {
+                console.log("Title: " + article[i].title);
+                console.log("By: " + article[i].author);
+                console.log("Source: " + article[i].source.name);
+                console.log("Link: " + article[i].url);
+                console.log("==========================================");
+
+            }
+        });
+
+
+        // SEATGEEK AJAX CALL
+        // ========================================================================================
+        $.ajax({
+            url: seatgeekUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+            console.log(response.events);
+
+            var teamEvent = response.events;
+
+            console.log("NEXT GAME");
+            console.log(teamEvent[0].short_title);
+            console.log(teamEvent[0].venue.name);
+            console.log(teamEvent[0].venue.extended_address);
+            console.log("Time: " + teamEvent[0].datetime_local);
+            console.log("Buy Tickets Here: " + teamEvent[0].url);
+
+        }); 
+
+
+        // MYSPORTSFEEDS AJAX CALL
+        // ========================================================================================
         $.ajax({
             url: mySportsFeedsUrl,
             method: "GET",
@@ -56,6 +85,3 @@ $(document).ready(function () {
 
     });
 });
-
-// News API 
-// https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=661826d0bdfe4381ace783308aa9216c
