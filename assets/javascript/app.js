@@ -1,9 +1,5 @@
 $(document).ready(function () {
 
-    /* $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    }) */
-
     var team;
     var teamAbbr;
     var teamDashed;
@@ -12,22 +8,20 @@ $(document).ready(function () {
         team = $(this).text();
         teamDashed = team.split(/\s+/).join('-');
         teamAbbr = $(this).attr("id");
-        console.log(team);
-        console.log(teamAbbr);
-        console.log(teamDashed);
+
         $("#team-selection").text(team);
     })
 
     $("#team-submit").on("click", function () {
         event.preventDefault();
+        $("#team-selection").text("Select Your Team!");
+        $("#articles").empty();
+        $("#seatgeek-info").empty();
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
-
         var seatgeekUrl = "https://api.seatgeek.com/2/events?performers.slug=" + teamDashed + "&client_id=MTkwNTE3NjN8MTU3MTg1OTczOS4yNA";
-
         var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/scoreboard.json?fordate=20191013&team=" + teamDashed;
-        // var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/game_boxscore.json?gameid=20190905-GB-CHI"
 
         // NEWS AJAX CALL
         // ========================================================================================
@@ -35,25 +29,22 @@ $(document).ready(function () {
             url: newsUrl,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
+            console.log("NEWS");
+            console.log(response.articles);
+            console.log("========================");
 
             var article = response.articles;
 
-            for (var i = 0; i < 10; i++) {
-                console.log("Title: " + article[i].title);
-                console.log("By: " + article[i].author);
-                console.log("Source: " + article[i].source.name);
-                console.log("Link: " + article[i].url);
-                console.log("==========================================");
-
+            for (var i = 0; i < 5; i++) {
                 var articleDiv = $("<div>");
                 articleDiv.addClass("article-content");
 
-                var articleTitle = $("<h5>").text(article[i].title);
-                var articleAuthor = $("<p>").text("By: " + article[i].author);
-                var articleSource = $("<p>").text("Source: " + article[i].source.name);
-                var articleUrl = $("<p>").text("Link: " + article[i].url);
+                var articleTitle = $("<h5 class='article-text' id='article-title'>").text(article[i].title);
+                var articleAuthor = $("<p class='article-text' id='article-author'>").text("By: " + article[i].author);
+                var articleSource = $("<p class='article-text' id='article-source'>").text("Source: " + article[i].source.name);
+                var articleUrl = $("<p class='article-text' id='article-url'>").html("Link: <a href=" + article[i].url + " target='_blank'>" + article[i].url + "</a>");
 
+                // articleDiv.append("<h3 class='article-text id='article-header'>Recent " + team + " News</h3>");
                 articleDiv.append(articleTitle);
                 articleDiv.append(articleAuthor);
                 articleDiv.append(articleSource);
@@ -70,17 +61,30 @@ $(document).ready(function () {
             url: seatgeekUrl,
             method: "GET"
         }).then(function (response) {
-            console.log(response);
+            console.log("SEATGEEK");
             console.log(response.events);
+            console.log("========================");
 
             var teamEvent = response.events;
 
-            console.log("NEXT GAME");
-            console.log(teamEvent[0].short_title);
-            console.log(teamEvent[0].venue.name);
-            console.log(teamEvent[0].venue.extended_address);
-            console.log("Time: " + teamEvent[0].datetime_local);
-            console.log("Buy Tickets Here: " + teamEvent[0].url);
+            // dynamically generate elements
+            var seatgeekDiv = $("<div>");
+            seatgeekDiv.addClass("seatgeek-content");
+
+            var nextMatchup = $("<p class='seatgeek-text' id='next-matchup'>").text(teamEvent[0].short_title);
+            var nextVenue = $("<p class='seatgeek-text' id='next-venue'>").text("Location: " + teamEvent[0].venue.name);
+            var venueAddress = $("<p class='seetgeek-text' id='venue-address'>").text(teamEvent[0].venue.extended_address);
+            var eventTime = $("<p class='seatgeek-text' id='event-time'>").text(teamEvent[0].datetime_local);
+            var ticketsUrl = $("<p class='seatgeek-text' id='tickets-url'>").html("Buy tickets here: <a href=" + teamEvent[0].url + " target='_blank'>" + teamEvent[0].url + "</a>");
+
+            seatgeekDiv.append("<h3 class='seatgeek-text id='seatgeek-header'>Next Game:</h3>");
+            seatgeekDiv.append(nextMatchup);
+            seatgeekDiv.append(nextVenue);
+            seatgeekDiv.append(venueAddress);
+            seatgeekDiv.append(eventTime);
+            seatgeekDiv.append(ticketsUrl);
+
+            $("#seatgeek-info").append(seatgeekDiv);
 
         }); 
 
@@ -94,7 +98,10 @@ $(document).ready(function () {
                 "Authorization": "Basic " + btoa("23eb33fc-e785-49c6-854b-caefbc:cfeL!StY!4BSZHk")
             },
         }).then(function (response) {
+            console.log("MYSPORTSFEEDS");
             console.log(response);
+            console.log("========================")
+
             var gameStats = response.scoreboard.gameScore;
             
             console.log("Away team: " + gameStats[0].game.awayTeam.City + " " + gameStats[0].game.awayTeam.Name);
