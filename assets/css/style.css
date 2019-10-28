@@ -1,20 +1,18 @@
-
 body {
     background-image: url("https://i.pinimg.com/originals/32/1a/05/321a052dbafe29e84e5bae129a0f602e.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     background-position: center;
-
-
 }
+
 #superfan {
     background-color: #F01212;
     font-family: 'Righteous', cursive;
 }
 
-.nav-link{
+.nav-link {
 font-family: 'Righteous', cursive;
-
 }
 
 #superfan-jumbotron {
@@ -22,37 +20,36 @@ font-family: 'Righteous', cursive;
     margin-top: 10px;
 }
 
-#seatgeek-info {
+.seatgeek-content {
     /* color: black; */
     background-color: #e9ecef;
     border-radius: 10px;
-    padding: 5px;
-    margin-right: 15px;
-
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
 #articles {
-    
     background-color: #e9ecef;
     margin-bottom: auto;
     border-radius: 10px;
-    
-    }
+    /* padding: 15px;    */
+}
+
+.article-content, #article-header {
+    padding: 15px;
+}
+
 .mt-0 {
     font-family: 'Arvo', serif;
 }
-
 
 .footer {
     text-align: center;
     
 }
 
-
 .scrollable-menu {
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
 }
-
-

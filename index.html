@@ -71,7 +71,6 @@
                                 <a class="dropdown-item" href="#" id="TB">Tampa Bay Buccaneers</a>
                                 <a class="dropdown-item" href="#" id="TEN">Tennessee Titans</a>
                                 <a class="dropdown-item" href="#" id="WAS">Washington Redskins</a>
-
                             </ul>
                         </div>
                     </form>
@@ -128,23 +127,81 @@
     </div>
     <!-- end jumbotron -->
 
-    <!-- bootstrap media object, potential article section? -->
     <div class="container">
         <div class="row">
-            <div class="col-md-4" id="boxscore">
-                <div class="row">
-                    <p>Boxscore could go here.</p>
-                </div>
-                <div class="row">
-                    <div id="seatgeek-info"></div>
+            <div class="col-md-6">
+                <div id="scoreboard-div">
+                    <h3>Last Matchup:</h3>
+                    <table class="table table-striped table-dark" id="scoreboard">
+                        <thead class="thead-dark">
+                            <tr id="qtr-headers">
+                                <th scope="col"></th>
+                                <th scope="col">Q1</th>
+                                <th scope="col">Q2</th>
+                                <th scope="col">Q3</th>
+                                <th scope="col">Q4</th>
+                                <th scope="col">FINAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="away-qtrs">
+                                <th scope="row" id="away-abbr"></th>
+                            </tr>
+                            <tr id="home-qtrs">
+                                <th scope="row" id="home-abbr"></th>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <div class="col-md-8" id="articles">
-                <!-- articles dynamically generated here -->
+            <div class="col-md-6">
+                <div id="seatgeek-info"></div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" id="articles"></div>
+            <div class="col-md-2"></div>
+        </div>
     </div>
+
+
+    <!-- bootstrap media object, contains boxscore, articles, ticket info -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="scoreboard-tix">
+                <div class="row">
+                    <div id="scoreboard-div">
+                        <h3>Last Matchup:</h3>
+                        <table class="table table-striped table-dark" id="scoreboard">
+                            <thead class="thead-dark">
+                                <tr id="qtr-headers">
+                                    <th scope="col"></th>
+                                    <th scope="col">Q1</th>
+                                    <th scope="col">Q2</th>
+                                    <th scope="col">Q3</th>
+                                    <th scope="col">Q4</th>
+                                    <th scope="col">FINAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="away-qtrs">
+                                    <th scope="row" id="away-abbr"></th>
+                                </tr>
+                                <tr id="home-qtrs">
+                                    <th scope="row" id="home-abbr"></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> score generated here -->
+    <!-- </div>
+                <div class="row">
+                    <div id="seatgeek-info"></div> seatgeek info generated here -->
+    <!-- </div>
+            </div>
+            <div class="col-md-6" id="articles"></div> articles generated here
+        </div>
+    </div> -->
 
     <div>
         <footer class="footer">Copyright</footer>
