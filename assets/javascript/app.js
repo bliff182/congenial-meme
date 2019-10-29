@@ -5,6 +5,7 @@ $(document).ready(function () {
     var teamDashed;
 
     $("#scoreboard-div").hide();
+    $("#articles").hide();
 
     $(".dropdown-item").on("click", function () {
         team = $(this).text();
@@ -25,6 +26,7 @@ $(document).ready(function () {
         $(".home-qtr").remove();
         $(".final-score").remove();
         $("#scoreboard-div").show();
+        $("#articles").show();
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
@@ -46,7 +48,7 @@ $(document).ready(function () {
             $("#articles").append("<h3 class='article-text' id='article-header'>Recent " + team + " News</h3>");
             $("#articles").append("<hr>");
 
-            for (var i = 0; i < 5; i++) {
+            for (var i = 0; i < 10; i++) {
                 var articleDiv = $("<div>");
                 articleDiv.addClass("article-content");
 
@@ -79,7 +81,7 @@ $(document).ready(function () {
 
             var teamEvent = response.events;
 
-            var time = teamEvent[0].datetime_local;
+            var time = teamEvent[0].datetime_local; // NEEDS TO BE CONVERTED
             // newTime = time.toDateString();
             // console.log(newTime);
 
