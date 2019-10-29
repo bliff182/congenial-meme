@@ -6,13 +6,18 @@ body {
     background-position: center;
 }
 
+.jumbotron {
+    border: 1px solid #343a40;
+    box-shadow: 3px 3px 10px;
+}
+
 #superfan {
     background-color: #F01212;
     font-family: 'Righteous', cursive;
 }
 
 .nav-link {
-font-family: 'Righteous', cursive;
+    font-family: 'Righteous', cursive;
 }
 
 #superfan-jumbotron {
@@ -20,19 +25,41 @@ font-family: 'Righteous', cursive;
     margin-top: 10px;
 }
 
+#scoreboard-header {
+    text-align: center;
+    color: #e9ecef;
+    background-color: #343a40;
+    padding: 15px;
+    margin-bottom: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: 3px 3px 10px black;
+}
+
+#scoreboard {
+    box-shadow: 3px 3px 10px black;
+}
+
 .seatgeek-content {
     /* color: black; */
+    text-align: center;
     background-color: #e9ecef;
+    border: 1px solid #343a40;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 20px;
+    box-shadow: 3px 3px 10px;
+    line-height: 45%;
 }
 
 #articles {
     background-color: #e9ecef;
     margin-bottom: auto;
+    border: 1px solid #343a40;
     border-radius: 10px;
     /* padding: 15px;    */
+    box-shadow: 3px 3px 10px;
+    line-height: 100%;
 }
 
 .article-content, #article-header {
@@ -45,7 +72,6 @@ font-family: 'Righteous', cursive;
 
 .footer {
     text-align: center;
-    
 }
 
 .scrollable-menu {
