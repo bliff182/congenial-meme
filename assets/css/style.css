@@ -1,20 +1,18 @@
-
 body {
     background-image: url("https://i.pinimg.com/originals/32/1a/05/321a052dbafe29e84e5bae129a0f602e.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     background-position: center;
-
-
 }
+
 #superfan {
     background-color: #F01212;
     font-family: 'Righteous', cursive;
 }
 
-.nav-link{
+.nav-link {
 font-family: 'Righteous', cursive;
-
 }
 .nav-link:hover {
     cursor: pointer;
@@ -27,26 +25,34 @@ font-family: 'Righteous', cursive;
     font-family: 'Exo 2', sans-serif;
     margin-top: 10px;
 }
-#articles {
-    
-    background-color: white;
-    margin-bottom: auto;
+
+.seatgeek-content {
+    /* color: black; */
+    background-color: #e9ecef;
     border-radius: 10px;
-    
-    }
-.mt-0 {
-    font-family: 'Arvo', serif;
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
-#boxscore {
-    color: #F7F1F1;
+#articles {
+    background-color: #e9ecef;
+    margin-bottom: auto;
+    border-radius: 10px;
+    /* padding: 15px;    */
+}
+
+.article-content, #article-header {
+    padding: 15px;
+}
+
+.mt-0 {
+    font-family: 'Arvo', serif;
 }
 
 .footer {
     text-align: center;
     
 }
-
 
 .scrollable-menu {
     height: auto;
@@ -62,5 +68,6 @@ font-family: 'Righteous', cursive;
 fa-instagram {
     size: 60px;
 }
+
 
 

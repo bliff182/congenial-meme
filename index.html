@@ -17,7 +17,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <title>Project 1</title>
+    <title>Superfan</title>
 </head>
 
 <body>
@@ -36,13 +36,15 @@
                 <div class="modal-body">
                     <form>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select
+
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                id="team-selection">Select
                                 Your Team! <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu scrollable-menu" role="menu">
                                 <a class="dropdown-item" href="#" id="ARI">Arizona Cardinals</a>
                                 <a class="dropdown-item" href="#" id="ATL">Atlanta Falcons</a>
-                                <a class="dropdown-item" href="#" id="BAL">Baltimor Ravens</a>
+                                <a class="dropdown-item" href="#" id="BAL">Baltimore Ravens</a>
                                 <a class="dropdown-item" href="#" id="BUF">Buffalo Bills</a>
                                 <a class="dropdown-item" href="#" id="CAR">Carolina Panthers</a>
                                 <a class="dropdown-item" href="#" id="CHI">Chicago Bears</a>
@@ -67,29 +69,23 @@
                                 <a class="dropdown-item" href="#" id="OAK">Oakland Raiders</a>
                                 <a class="dropdown-item" href="#" id="PHI">Philadelphia Eagles</a>
                                 <a class="dropdown-item" href="#" id="PIT">Pittsburgh Steelers</a>
-                                <a class="dropdown-item" href="#" id="SF">San Francisco 49ERS</a>
+
+                                <a class="dropdown-item" href="#" id="SF">San Francisco 49ers</a>
                                 <a class="dropdown-item" href="#" id="SEA">Seattle Seahawks</a>
                                 <a class="dropdown-item" href="#" id="TB">Tampa Bay Buccaneers</a>
                                 <a class="dropdown-item" href="#" id="TEN">Tennessee Titans</a>
-                                <a class="dropdown-item" href="#" id="WAS">Wahington Redskins</a>
-
+                                <a class="dropdown-item" href="#" id="WAS">Washington Redskins</a>
                             </ul>
                         </div>
-                        <!-- <div class="form-group">
-                            <label for="teamSelect">Enter Team Name</label>
-                            <input type="text" class="form-control" id="team-selection" aria-describedby="team-example"
-                                placeholder="e.g. New York Yankees">
-                        </div> -->
-                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
                     <button type="submit" class="btn btn-primary" id="team-submit" data-dismiss="modal">Submit</button>
                 </div>
             </div>
         </div>
     </div>
+    <!-- end modal -->
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
@@ -113,15 +109,10 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#" id="standings">Standings<span class="sr-only">(current)</span></a>
                 </li>
-
-
             </ul>
-            <!-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form> -->
         </div>
     </nav>
+    <!-- end navbar -->
 
     <!-- jumbotron -->
     <div class="container">
@@ -136,82 +127,89 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                 Launch team select modal
             </button>
-            <!--  <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Select Your Team! <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu scrollable-menu" role="menu">
-                    <a class="dropdown-item" href="#" id="ARI">Arizona Cardinals</a>
-                    <a class="dropdown-item" href="#" id="ATL">Atlanta Falcons</a>
-                    <a class="dropdown-item" href="#" id="BAL">Baltimor Ravens</a>
-                    <a class="dropdown-item" href="#" id="BUF">Buffalo Bills</a>
-                    <a class="dropdown-item" href="#" id="CAR">Carolina Panthers</a>
-                    <a class="dropdown-item" href="#" id="CHI">Chicago Bears</a>
-                    <a class="dropdown-item" href="#" id="CIN">Cincinnati Bengals</a>
-                    <a class="dropdown-item" href="#" id="CLE">Cleveland Browns</a>
-                    <a class="dropdown-item" href="#" id="DAL">Dallas Cowboys</a>
-                    <a class="dropdown-item" href="#" id="DEN">Denver Broncos</a>
-                    <a class="dropdown-item" href="#" id="DET">Detroit Lions</a>
-                    <a class="dropdown-item" href="#" id="GB">Green Bay Packers</a>
-                    <a class="dropdown-item" href="#" id="HOU">Houston Texans</a>
-                    <a class="dropdown-item" href="#" id="IND">Indianapolis Colts</a>
-                    <a class="dropdown-item" href="#" id="JAX">Jacksonville Jaguars</a>
-                    <a class="dropdown-item" href="#" id="KC">Kansas City Chiefs</a>
-                    <a class="dropdown-item" href="#" id="SD">Los Angeles Chargers</a>
-                    <a class="dropdown-item" href="#" id="STL">Los Angeles Rams</a>
-                    <a class="dropdown-item" href="#" id="MIA">Miami Dolphins</a>
-                    <a class="dropdown-item" href="#" id="MIN">Minnesota Vikings</a>
-                    <a class="dropdown-item" href="#" id="NE">New England Patriots</a>
-                    <a class="dropdown-item" href="#" id="NO">New Orleans Saints</a>
-                    <a class="dropdown-item" href="#" id="NYG">New York Giants</a>
-                    <a class="dropdown-item" href="#" id="NYJ">New York Jets</a>
-                    <a class="dropdown-item" href="#" id="OAK">Oakland Raiders</a>
-                    <a class="dropdown-item" href="#" id="PHI">Philadelphia Eagles</a>
-                    <a class="dropdown-item" href="#" id="PIT">Pittsburgh Steelers</a>
-                    <a class="dropdown-item" href="#" id="SF">San Francisco 49ERS</a>
-                    <a class="dropdown-item" href="#" id="SEA">Seattle Seahawks</a>
-                    <a class="dropdown-item" href="#" id="TB">Tampa Bay Buccaneers</a>
-                    <a class="dropdown-item" href="#" id="TEN">Tennessee Titans</a>
-                    <a class="dropdown-item" href="#" id="WAS">Wahington Redskins</a>
 
-                    </ul>
-                </div>    -->
         </div>
     </div>
-    </div>
+    <!-- end jumbotron -->
 
-    <!-- bootstrap media object, potential article section? -->
     <div class="container">
         <div class="row">
-            <div class="col-md-7" id="boxscore">
-                <p>Boxscore could go here.</p>
+            <div class="col-md-6">
+                <div id="scoreboard-div">
+                    <h3>Last Matchup:</h3>
+                    <table class="table table-striped table-dark" id="scoreboard">
+                        <thead class="thead-dark">
+                            <tr id="qtr-headers">
+                                <th scope="col"></th>
+                                <th scope="col">Q1</th>
+                                <th scope="col">Q2</th>
+                                <th scope="col">Q3</th>
+                                <th scope="col">Q4</th>
+                                <th scope="col">FINAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="away-qtrs">
+                                <th scope="row" id="away-abbr"></th>
+                            </tr>
+                            <tr id="home-qtrs">
+                                <th scope="row" id="home-abbr"></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-            <div class="col-md-5" id="articles">
-                <div class="media">
-                    <!-- <img src="..." class="mr-3" alt="..."> -->
-                    <div class="media-body">
-                        <h5 class="mt-0">Sample Article 1</h5>
-                        Articles about the team can be displayed here after search.
-                    </div>
-                </div>
-                <br>
-                <div class="media">
-                    <!-- <img src="..." class="mr-3" alt="..."> -->
-                    <div class="media-body">
-                        <h5 class="mt-0">Sample Article 2</h5>
-                        Articles about the team can be displayed here after search.
-                    </div>
-                </div>
-                <br>
-                <div class="media">
-                    <!-- <img src="..." class="mr-3" alt="..."> -->
-                    <div class="media-body">
-                        <h5 class="mt-0">Sample Article 3</h5>
-                        Articles about the team can be displayed here after search.
-                    </div>
-                </div>
+            <div class="col-md-6">
+                <div id="seatgeek-info"></div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8" id="articles"></div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+
+
+    <!-- bootstrap media object, contains boxscore, articles, ticket info -->
+    <!-- <div class="container">
+        <div class="row">
+            <div class="col-md-6" id="scoreboard-tix">
+                <div class="row">
+                    <div id="scoreboard-div">
+                        <h3>Last Matchup:</h3>
+                        <table class="table table-striped table-dark" id="scoreboard">
+                            <thead class="thead-dark">
+                                <tr id="qtr-headers">
+                                    <th scope="col"></th>
+                                    <th scope="col">Q1</th>
+                                    <th scope="col">Q2</th>
+                                    <th scope="col">Q3</th>
+                                    <th scope="col">Q4</th>
+                                    <th scope="col">FINAL</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="away-qtrs">
+                                    <th scope="row" id="away-abbr"></th>
+                                </tr>
+                                <tr id="home-qtrs">
+                                    <th scope="row" id="home-abbr"></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div> score generated here -->
+    <!-- </div>
+                <div class="row">
+                    <div id="seatgeek-info"></div> seatgeek info generated here -->
+    <!-- </div>
+            </div>
+            <div class="col-md-6" id="articles"></div> articles generated here
+        </div>
+    </div> -->
+
+    <div>
+        <footer class="footer">Copyright</footer>
     </div>
 
     <span class="media">
@@ -235,10 +233,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
-    <div>
-        <footer class="footer">Copyright</footer>
-    </div>
-    </div>
+
 </body>
 
 </html>
