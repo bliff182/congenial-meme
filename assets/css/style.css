@@ -58,7 +58,7 @@ body {
     line-height: 45%;
 }
 
-#articles {
+#articles, #top-headlines {
     background-color: #e9ecef;
     margin-bottom: auto;
     border: 1px solid #343a40;

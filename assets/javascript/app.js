@@ -14,7 +14,42 @@ $(document).ready(function () {
         teamAbbr = $(this).attr("id");
 
         $("#team-selection").text(team);
-    })
+    });
+
+    // for news page
+    function topHeadlines() {
+        var newsUrl = "https://newsapi.org/v2/top-headlines?country=us&category=sports&q=nfl&apiKey=661826d0bdfe4381ace783308aa9216c"
+        $.ajax({
+            url: newsUrl,
+            method: "GET"
+        }).then(function (response) {
+            console.log("TOP HEADLINES");
+            console.log(response.articles);
+
+            var article = response.articles;
+
+            $("#top-headlines").append("<h3 class='article-text' id='article-header'>Top NFL Headlines</h3>");
+            $("#top-headlines").append("<hr>");
+
+            for (var i = 0; i < article.length; i++) {
+                var articleDiv = $("<div>");
+                articleDiv.addClass("article-content");
+
+                var articleTitle = $("<h5 class='article-text' id='article-title'>").text(article[i].title);
+                var articleAuthor = $("<p class='article-text' id='article-author'>").text("By: " + article[i].author);
+                var articleSource = $("<p class='article-text' id='article-source'>").text("Source: " + article[i].source.name);
+                var articleUrl = $("<p class='article-text' id='article-url'>").html("<a href=" + article[i].url + " target='_blank'>Read Full Article</a>");
+
+                articleDiv.append(articleTitle);
+                articleDiv.append(articleAuthor);
+                articleDiv.append(articleSource);
+                articleDiv.append(articleUrl);
+                articleDiv.append("<hr>");
+
+                $("#top-headlines").append(articleDiv);
+            }
+        });
+    }
 
     $("#team-submit").on("click", function () {
         event.preventDefault();
@@ -157,5 +192,8 @@ $(document).ready(function () {
         });
 
     });
+
+    topHeadlines();
+    
 
 });
