@@ -53,6 +53,20 @@ $(document).ready(function () {
 
     $("#team-submit").on("click", function () {
         event.preventDefault();
+        function mySelectValue() {
+            // Add an event listener for the value
+            document.getElementById('mySelectValue').addEventListener('change', function() {
+              // Get the value of the name field.
+              var mySelectValue = document.getElementById('mySelectValue').value;
+        
+              // Save the name in localStorage.
+              localStorage.setItem('mySelectValue', mySelectValue);
+            });
+        }
+        console.log(team);
+        $("#team-selection").text(team);
+        localStorage.setItem("team", team);
+        $("#team-selection").text(localStorage.getItem("team"));
         $("#team-selection").text("Select Your Team!");
         $("#articles").empty();
         $("#seatgeek-info").empty();
@@ -190,6 +204,14 @@ $(document).ready(function () {
             $("#home-qtrs").append("<td class='final-score'>" + gameStats[0].homeScore + "</td>");
 
         });
+        // $("#team-submit").on("click", function(event){
+        //     event.preventDefault();
+        //     var userTeamChoice = $("#team-selection").val().trim();
+        //     // alert(userTeamChoice)
+        //     console.log("run")
+            
+        // }) 
+      
 
     });
 
