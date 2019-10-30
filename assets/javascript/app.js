@@ -4,6 +4,7 @@ $(document).ready(function () {
     var teamAbbr;
     var teamDashed;
 
+
     $("#scoreboard-div").hide();
     $("#articles").hide();
 
