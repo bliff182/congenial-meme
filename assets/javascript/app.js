@@ -3,18 +3,38 @@ $(document).ready(function () {
     var team;
     var teamAbbr;
     var teamDashed;
-
+    var isFavorite = false;
+    var teamSelected = false;
 
     $("#scoreboard-div").hide();
     $("#articles").hide();
 
-    $(".dropdown-item").on("click", function () {
+    // $(".dropdown-item").on("click", function () {
+    $(document).on("click", ".dropdown-item", function () {
         team = $(this).text();
         teamDashed = team.split(/\s+/).join('-');
-        teamAbbr = $(this).attr("id");
+        teamAbbr = $(this).attr("abbr");
 
         $("#team-selection").text(team);
     });
+
+    // favorites button
+    $("#favorites-button").on("click", function () {
+        if (!isFavorite && teamSelected) {
+            isFavorite = true;
+            console.log(team);
+
+            var favorite = $("<a>");
+            favorite.addClass("dropdown-item");
+            favorite.attr("href", "#");
+            favorite.attr("abbr", teamAbbr);
+            favorite.attr("id", "team-submit");
+            favorite.text(team);
+
+            $("#favorites-dropdown").append(favorite);
+            $("#favorites-button").text(team + " Added to Favorites!");
+        }
+    })
 
     // for news page
     function topHeadlines() {
@@ -23,8 +43,8 @@ $(document).ready(function () {
             url: newsUrl,
             method: "GET"
         }).then(function (response) {
-            console.log("TOP HEADLINES");
-            console.log(response.articles);
+            // console.log("TOP HEADLINES");
+            // console.log(response.articles);
 
             var article = response.articles;
 
@@ -51,9 +71,11 @@ $(document).ready(function () {
         });
     }
 
-    $("#team-submit").on("click", function () {
+    // $("#team-submit").on("click", function () {
+    $(document).on("click", "#team-submit", function () {
         event.preventDefault();
-        function mySelectValue() {
+
+        /* function mySelectValue() {
             // Add an event listener for the value
             document.getElementById('mySelectValue').addEventListener('change', function() {
               // Get the value of the name field.
@@ -62,11 +84,14 @@ $(document).ready(function () {
               // Save the name in localStorage.
               localStorage.setItem('mySelectValue', mySelectValue);
             });
-        }
-        console.log(team);
+        } */
+
+        // console.log(team);
+        isFavorite = false;
+        teamSelected = true;
         $("#team-selection").text(team);
-        localStorage.setItem("team", team);
-        $("#team-selection").text(localStorage.getItem("team"));
+        // localStorage.setItem("team", team);
+        // $("#team-selection").text(localStorage.getItem("team"));
         $("#team-selection").text("Select Your Team!");
         $("#articles").empty();
         $("#seatgeek-info").empty();
@@ -77,6 +102,7 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
+        $("#favorites-button").text("Add to Your Favorites");
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
@@ -89,9 +115,9 @@ $(document).ready(function () {
             url: newsUrl,
             method: "GET"
         }).then(function (response) {
-            console.log("NEWS");
-            console.log(response.articles);
-            console.log("========================");
+            // console.log("NEWS");
+            // console.log(response.articles);
+            // console.log("========================");
 
             var article = response.articles;
 
@@ -124,9 +150,9 @@ $(document).ready(function () {
             url: seatgeekUrl,
             method: "GET"
         }).then(function (response) {
-            console.log("SEATGEEK");
-            console.log(response.events);
-            console.log("========================");
+            // console.log("SEATGEEK");
+            // console.log(response.events);
+            // console.log("========================");
             // console.log(toDateString(teamEvent[0].datetime_local));
 
             var teamEvent = response.events;
@@ -168,9 +194,9 @@ $(document).ready(function () {
             }
         }).then(function (response) {
             // ====================================================================================
-            console.log("MYSPORTSFEEDS");
-            console.log(response);
-            console.log("========================");
+            // console.log("MYSPORTSFEEDS");
+            // console.log(response);
+            // console.log("========================");
 
             var gameStats = response.scoreboard.gameScore;
 
@@ -185,7 +211,7 @@ $(document).ready(function () {
             // adding info to table 
             $("#away-abbr").text(awayAbbr);
             $("#home-abbr").text(homeAbbr);
-            
+
             for (var i = 0; i < quarterScore.length; i++) {
                 var awayQuarter = $("<td>");
                 var homeQuarter = $("<td>");
@@ -209,13 +235,13 @@ $(document).ready(function () {
         //     var userTeamChoice = $("#team-selection").val().trim();
         //     // alert(userTeamChoice)
         //     console.log("run")
-            
+
         // }) 
-      
+
 
     });
 
     topHeadlines();
-    
+
 
 });
