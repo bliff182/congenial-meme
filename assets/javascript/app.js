@@ -75,6 +75,7 @@ $(document).ready(function () {
 
     $("#scoreboard-div").hide();
     $("#articles").hide();
+    $("#favorites-button").hide();
     $("#team-logo").hide();
 
     // $(".dropdown-item").on("click", function () {
@@ -138,6 +139,7 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
+        $("#favorites-button").show()
         $("#team-logo").show();
         $("#team-logo").empty();
         $("#favorites-button").text("Add to Your Favorites");
