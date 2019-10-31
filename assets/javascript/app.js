@@ -13,6 +13,7 @@ $(document).ready(function () {
     }
     var isFavorite = false;
     var teamSelected = false;
+    
 
     function renderFavorites(favoriteTeams) {
         $("#favorites-dropdown").empty();
@@ -98,7 +99,22 @@ $(document).ready(function () {
     $(document).on("click", "#team-submit", function () {
         event.preventDefault();
 
+
+        /* function mySelectValue() {
+            // Add an event listener for the value
+            document.getElementById('mySelectValue').addEventListener('change', function() {
+              // Get the value of the name field.
+              var mySelectValue = document.getElementById('mySelectValue').value;
+        
+              // Save the name in localStorage.
+              localStorage.setItem('mySelectValue', mySelectValue);
+            });
+        } */
+
         // console.log(team);
+        
+       
+        
         isFavorite = false;
         teamSelected = true;
         $("#team-selection").text(team);
@@ -113,6 +129,9 @@ $(document).ready(function () {
         $("#scoreboard-div").show();
         $("#articles").show();
         $("#favorites-button").text("Add to Your Favorites");
+        $("#team-logo").append("<h2>" + team + "</h3>");
+       
+       
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
@@ -242,6 +261,15 @@ $(document).ready(function () {
             $("#home-qtrs").append("<td class='final-score'>" + gameStats[0].homeScore + "</td>");
 
         });
+        // $("#team-submit").on("click", function(event){
+        //     event.preventDefault();
+        //     var teamName = $("#team-selection").val().trim();
+        //     // alert(userTeamChoice)
+        //     console.log("run")
+
+        // }) 
+
+
 
     });
 
