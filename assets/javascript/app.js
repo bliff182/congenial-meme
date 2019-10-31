@@ -67,6 +67,7 @@ $(document).ready(function () {
 
     $("#scoreboard-div").hide();
     $("#articles").hide();
+    $("#favorites-button").hide();
 
     // $(".dropdown-item").on("click", function () {
     $(document).on("click", ".dropdown-item", function () {
@@ -128,6 +129,8 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
+        $("#favorites-button").show()
+        $("#team-logo").empty();
         $("#favorites-button").text("Add to Your Favorites");
         $("#team-logo").append("<h2>" + team + "</h3>");
        
