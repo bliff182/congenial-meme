@@ -3,6 +3,7 @@ $(document).ready(function () {
     var team;
     var teamAbbr;
     var teamDashed;
+    var teamLogo;
     var favoriteTeams = JSON.parse(localStorage.getItem("favoriteTeams"));
     if (!Array.isArray(favoriteTeams)) {
         favoriteTeams = [];
@@ -13,7 +14,7 @@ $(document).ready(function () {
     }
     var isFavorite = false;
     var teamSelected = false;
-    
+
 
     function renderFavorites(favoriteTeams) {
         $("#favorites-dropdown").empty();
@@ -65,14 +66,23 @@ $(document).ready(function () {
         });
     }
 
+    function displayLogo () {
+        var logo = $("<img>");
+        logo.attr("src", teamLogo);
+        logo.addClass("logo");
+        $("#team-logo").prepend(logo);
+    }
+
     $("#scoreboard-div").hide();
     $("#articles").hide();
+    $("#team-logo").hide();
 
     // $(".dropdown-item").on("click", function () {
     $(document).on("click", ".dropdown-item", function () {
         team = $(this).text();
         teamDashed = team.split(/\s+/).join('-');
         teamAbbr = $(this).attr("abbr");
+        teamLogo = $(this).attr("img");
 
         $("#team-selection").text(team);
     });
@@ -112,9 +122,9 @@ $(document).ready(function () {
         } */
 
         // console.log(team);
-        
-       
-        
+
+
+
         isFavorite = false;
         teamSelected = true;
         $("#team-selection").text(team);
@@ -128,10 +138,14 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
+        $("#team-logo").show();
+        $("#team-logo").empty();
         $("#favorites-button").text("Add to Your Favorites");
+
+        displayLogo();
         $("#team-logo").append("<h2>" + team + "</h3>");
-       
-       
+
+
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
