@@ -5,6 +5,7 @@ $(document).ready(function () {
     var teamDashed;
     var isFavorite = false;
     var teamSelected = false;
+    
 
     $("#scoreboard-div").hide();
     $("#articles").hide();
@@ -77,6 +78,7 @@ $(document).ready(function () {
     $(document).on("click", "#team-submit", function () {
         event.preventDefault();
 
+
         /* function mySelectValue() {
             // Add an event listener for the value
             document.getElementById('mySelectValue').addEventListener('change', function() {
@@ -89,6 +91,9 @@ $(document).ready(function () {
         } */
 
         // console.log(team);
+        
+       
+        
         isFavorite = false;
         teamSelected = true;
         $("#team-selection").text(team);
@@ -105,6 +110,9 @@ $(document).ready(function () {
         $("#scoreboard-div").show();
         $("#articles").show();
         $("#favorites-button").text("Add to Your Favorites");
+        $("#team-logo").append("<h2>" + team + "</h3>");
+       
+       
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
@@ -236,11 +244,12 @@ $(document).ready(function () {
         });
         // $("#team-submit").on("click", function(event){
         //     event.preventDefault();
-        //     var userTeamChoice = $("#team-selection").val().trim();
+        //     var teamName = $("#team-selection").val().trim();
         //     // alert(userTeamChoice)
         //     console.log("run")
 
         // }) 
+
 
 
     });
