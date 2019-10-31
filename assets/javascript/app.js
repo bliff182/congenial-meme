@@ -3,39 +3,30 @@ $(document).ready(function () {
     var team;
     var teamAbbr;
     var teamDashed;
+    var favoriteTeams = JSON.parse(localStorage.getItem("favoriteTeams"));
+    if (!Array.isArray(favoriteTeams)) {
+        favoriteTeams = [];
+    }
+    var favoriteAbbr = JSON.parse(localStorage.getItem("favoriteAbbr"));
+    if (!Array.isArray(favoriteAbbr)) {
+        favoriteAbbr = [];
+    }
     var isFavorite = false;
     var teamSelected = false;
     
 
-    $("#scoreboard-div").hide();
-    $("#articles").hide();
-
-    // $(".dropdown-item").on("click", function () {
-    $(document).on("click", ".dropdown-item", function () {
-        team = $(this).text();
-        teamDashed = team.split(/\s+/).join('-');
-        teamAbbr = $(this).attr("abbr");
-
-        $("#team-selection").text(team);
-    });
-
-    // favorites button
-    $("#favorites-button").on("click", function () {
-        if (!isFavorite && teamSelected) {
-            isFavorite = true;
-            // console.log(team);
-
+    function renderFavorites(favoriteTeams) {
+        $("#favorites-dropdown").empty();
+        for (var i = 0; i < favoriteTeams.length; i++) {
             var favorite = $("<a>");
             favorite.addClass("dropdown-item");
             favorite.attr("href", "#");
-            favorite.attr("abbr", teamAbbr);
+            favorite.attr("abbr", favoriteAbbr[i]);
             favorite.attr("id", "team-submit");
-            favorite.text(team);
-
+            favorite.text(favoriteTeams[i]);
             $("#favorites-dropdown").append(favorite);
-            $("#favorites-button").text(team + " Added to Favorites!");
         }
-    })
+    }
 
     // for news page
     function topHeadlines() {
@@ -74,6 +65,36 @@ $(document).ready(function () {
         });
     }
 
+    $("#scoreboard-div").hide();
+    $("#articles").hide();
+
+    // $(".dropdown-item").on("click", function () {
+    $(document).on("click", ".dropdown-item", function () {
+        team = $(this).text();
+        teamDashed = team.split(/\s+/).join('-');
+        teamAbbr = $(this).attr("abbr");
+
+        $("#team-selection").text(team);
+    });
+
+    // adding to favorites
+    $("#favorites-button").on("click", function () {
+        if (!isFavorite && teamSelected) {
+            isFavorite = true;
+            // console.log(team);
+            favoriteTeams.push(team);
+            favoriteAbbr.push(teamAbbr);
+
+            renderFavorites(favoriteTeams);
+
+            localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
+            localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
+
+            $("#favorites-button").text(team + " Added to Favorites!");
+        }
+    });
+
+
     // $("#team-submit").on("click", function () {
     $(document).on("click", "#team-submit", function () {
         event.preventDefault();
@@ -97,8 +118,6 @@ $(document).ready(function () {
         isFavorite = false;
         teamSelected = true;
         $("#team-selection").text(team);
-        // localStorage.setItem("team", team);
-        // $("#team-selection").text(localStorage.getItem("team"));
         $("#team-selection").text("Select Your Team!");
         $("#articles").empty();
         $("#seatgeek-info").empty();
@@ -256,5 +275,6 @@ $(document).ready(function () {
 
     topHeadlines();
 
+    renderFavorites(favoriteTeams);
 
 });
