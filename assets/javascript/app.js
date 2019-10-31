@@ -22,7 +22,7 @@ $(document).ready(function () {
     $("#favorites-button").on("click", function () {
         if (!isFavorite && teamSelected) {
             isFavorite = true;
-            console.log(team);
+            // console.log(team);
 
             var favorite = $("<a>");
             favorite.addClass("dropdown-item");
@@ -43,8 +43,8 @@ $(document).ready(function () {
             url: newsUrl,
             method: "GET"
         }).then(function (response) {
-            // console.log("TOP HEADLINES");
-            // console.log(response.articles);
+            console.log("TOP HEADLINES");
+            console.log(response.articles);
 
             var article = response.articles;
 
@@ -56,11 +56,13 @@ $(document).ready(function () {
                 articleDiv.addClass("article-content");
 
                 var articleTitle = $("<h5 class='article-text' id='article-title'>").text(article[i].title);
+                var articleDescription = $("<p class='article-text' id='article-description'>").text(article[i].description);
                 var articleAuthor = $("<p class='article-text' id='article-author'>").text("By: " + article[i].author);
                 var articleSource = $("<p class='article-text' id='article-source'>").text("Source: " + article[i].source.name);
                 var articleUrl = $("<p class='article-text' id='article-url'>").html("<a href=" + article[i].url + " target='_blank'>Read Full Article</a>");
 
                 articleDiv.append(articleTitle);
+                articleDiv.append(articleDescription);
                 articleDiv.append(articleAuthor);
                 articleDiv.append(articleSource);
                 articleDiv.append(articleUrl);
@@ -115,8 +117,8 @@ $(document).ready(function () {
             url: newsUrl,
             method: "GET"
         }).then(function (response) {
-            // console.log("NEWS");
-            // console.log(response.articles);
+            console.log("NEWS");
+            console.log(response.articles);
             // console.log("========================");
 
             var article = response.articles;
@@ -129,11 +131,13 @@ $(document).ready(function () {
                 articleDiv.addClass("article-content");
 
                 var articleTitle = $("<h5 class='article-text' id='article-title'>").text(article[i].title);
+                var articleDescription = $("<p class='article-text' id='article-description'>").text(article[i].description);
                 var articleAuthor = $("<p class='article-text' id='article-author'>").text("By: " + article[i].author);
                 var articleSource = $("<p class='article-text' id='article-source'>").text("Source: " + article[i].source.name);
                 var articleUrl = $("<p class='article-text' id='article-url'>").html("<a href=" + article[i].url + " target='_blank'>Read Full Article</a>");
 
                 articleDiv.append(articleTitle);
+                articleDiv.append(articleDescription);
                 articleDiv.append(articleAuthor);
                 articleDiv.append(articleSource);
                 articleDiv.append(articleUrl);
