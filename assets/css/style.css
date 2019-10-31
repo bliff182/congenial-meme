@@ -20,6 +20,7 @@ body {
 .nav-link {
     font-family: 'Righteous', cursive;
 }
+
 .nav-link:hover {
     cursor: pointer;
     background-color: #F01212;
@@ -47,7 +48,16 @@ body {
     box-shadow: 3px 3px 10px black;
 }
 
-.seatgeek-content {
+#team-logo {
+    width: auto;
+}
+
+.logo {
+    height: 150px;
+    width: 150px;
+}
+
+.seatgeek-content, #team-logo {
     /* color: black; */
     text-align: center;
     background-color: #e9ecef;
@@ -88,8 +98,7 @@ body {
 }
 
 .media:hover {
-    cursor: pointer; 
-     
+    cursor: pointer;
 }
 
 fa-instagram {
@@ -101,17 +110,13 @@ fa-instagram {
 }
 
 #team-logo {
-    text-align: center; 
+    text-align: center;
     color: black;
-    font-family: "Roboto-Condensed", arial;
-   
+    font-family: "Roboto-Condensed", arial; 
 }
 
 .btn-dark {
     width: 196.08px;
     height: 50px;
     padding: auto;
-    
 }
-
-
