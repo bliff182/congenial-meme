@@ -7,33 +7,33 @@ body {
     /* background-blend-mode: hard-light; */
 }
 
-.jumbotron {
+​ .jumbotron {
     border: 1px solid #343a40;
     box-shadow: 3px 3px 10px;
 }
 
-#superfan {
+​ #superfan {
     background-color: #F01212;
     font-family: 'Righteous', cursive;
 }
 
-.nav-link {
+​ .nav-link {
     font-family: 'Righteous', cursive;
 }
 
-.nav-link:hover {
+​ .nav-link:hover {
     cursor: pointer;
     background-color: #F01212;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
-#superfan-jumbotron {
+​ #superfan-jumbotron {
     font-family: 'Exo 2', sans-serif;
     margin-top: 10px;
 }
 
-#scoreboard-header {
+​ #scoreboard-header {
     text-align: center;
     color: #e9ecef;
     background-color: #343a40;
@@ -44,79 +44,85 @@ body {
     box-shadow: 3px 3px 10px black;
 }
 
-#scoreboard {
+​ #scoreboard {
     box-shadow: 3px 3px 10px black;
 }
 
-#team-logo {
-    width: auto;
-}
-
-.logo {
+​ .logo {
     height: 150px;
     width: 150px;
 }
 
-.seatgeek-content, #team-logo {
+​ .seatgeek-content, #team-logo {
     /* color: black; */
     text-align: center;
-    background-color: #e9ecef;
-    border: 1px solid #343a40;
+    color: #e9ecef;
+    background-color: #343a40;
+    border: 1px solid #e9ecef;
     border-radius: 10px;
     padding: 15px;
     margin-bottom: 20px;
-    box-shadow: 3px 3px 10px;
+    box-shadow: 3px 3px 10px black;
     line-height: 45%;
 }
 
-#articles, #top-headlines {
-    background-color: #e9ecef;
+​ #articles, #top-headlines {
+    color: #e9ecef;
+    background-color: #343a40;
     margin-bottom: auto;
-    border: 1px solid #343a40;
+    border: 1px solid #e9ecef;
     border-radius: 10px;
     /* padding: 15px;    */
-    box-shadow: 3px 3px 10px;
+    box-shadow: 3px 3px 10px black;
     line-height: 150%;
 }
 
-.article-content, #article-header {
+​ .article-content, #article-header {
     padding: 15px;
 }
 
-.mt-0 {
+​ .mt-0 {
     font-family: 'Arvo', serif;
 }
 
-.footer {
+​ .footer {
     text-align: center;
 }
 
-.scrollable-menu {
+​ .scrollable-menu {
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
 }
 
-.media:hover {
+​ .media:hover {
     cursor: pointer;
 }
 
-fa-instagram {
+​ fa-instagram {
     size: 60px;
 }
 
-#top-headlines {
+​ #top-headlines {
     margin: 40px;
 }
 
-#team-logo {
+​ #team-logo {
     text-align: center;
     color: black;
-    font-family: "Roboto-Condensed", arial; 
+    font-family: "Roboto-Condensed", arial;
+    width: auto;
+    color: #e9ecef;
+    background-color: #343a40;
 }
 
-.btn-dark, #favorites-button {
+/* #modal-toggler, #favorites-button {
+    float: left;
     width: 196.08px;
-    height: 50px;
+    height: 60px;
     padding: auto;
-}
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px;
+} */
