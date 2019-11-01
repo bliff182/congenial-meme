@@ -1,9 +1,16 @@
 $(document).ready(function () {
+    // ============================================================================================
+    // VARIABLES
+    // ============================================================================================
 
     var team;
     var teamAbbr;
     var teamDashed;
     var teamLogo;
+    var isFavorite = false;
+    var teamSelected = false;
+
+    // local storage variables
     var favoriteTeams = JSON.parse(localStorage.getItem("favoriteTeams"));
     if (!Array.isArray(favoriteTeams)) {
         favoriteTeams = [];
@@ -16,10 +23,12 @@ $(document).ready(function () {
     if (!Array.isArray(favoriteLogo)) {
         favoriteLogo = [];
     }
-    var isFavorite = false;
-    var teamSelected = false;
 
+    // ============================================================================================
+    // FUNCTIONS 
+    // ============================================================================================
 
+    // add favorite teams to dropdown in navbar
     function renderFavorites(favoriteTeams) {
         $("#favorites-dropdown").empty();
         for (var i = 0; i < favoriteTeams.length; i++) {
@@ -34,7 +43,7 @@ $(document).ready(function () {
         }
     }
 
-    // for news page
+    // add articles to news.html
     function topHeadlines() {
         var newsUrl = "https://newsapi.org/v2/top-headlines?country=us&category=sports&q=nfl&apiKey=661826d0bdfe4381ace783308aa9216c"
         $.ajax({
@@ -69,17 +78,35 @@ $(document).ready(function () {
         });
     }
 
-    function displayLogo () {
+    // display name and logo of selected team 
+    function displayTeam() {
+        $("#team-logo").empty();
+        $("#team-logo").show();
         var logo = $("<img>");
         logo.attr("src", teamLogo);
         logo.addClass("logo");
+        $("#team-logo").append("<h2>" + team + "</h2>");
         $("#team-logo").prepend(logo);
+        if (favoriteTeams.indexOf(team) > -1) {
+            $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
+        }
+        else {
+            $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
+        }
     }
+ 
+    // ============================================================================================
+    // FUNCTION EXECUTION 
+    // ============================================================================================
 
     $("#scoreboard-div").hide();
     $("#articles").hide();
     $("#favorites-button").hide();
     $("#team-logo").hide();
+
+    topHeadlines();
+
+    renderFavorites(favoriteTeams);
 
     // $(".dropdown-item").on("click", function () {
     $(document).on("click", ".dropdown-item", function () {
@@ -92,7 +119,7 @@ $(document).ready(function () {
     });
 
     // adding to favorites
-    $("#favorites-button").on("click", function () {
+    $(document).on("click", "#favorites-button", function () {
         if (!isFavorite && teamSelected) {
             isFavorite = true;
             favoriteTeams.push(team);
@@ -105,12 +132,27 @@ $(document).ready(function () {
             localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
             localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
 
-            $("#favorites-button").text(team + " Added to Favorites!");
+            // $("#favorites-button").text(team + " Added to Favorites!");
+            $("#favorites-button").remove();
+            $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
         }
     });
+    // removing from favorites
+    $(document).on("click", "#remove-button", function () {
+        isFavorite = false;
+        favoriteTeams.splice(team, 1);
+        favoriteAbbr.splice(teamAbbr, 1);
+        favoriteLogo.splice(teamLogo, 1);
+        renderFavorites(favoriteTeams);
+        localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
+        localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
+        localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
+        $("#remove-button").remove();
+        $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
+    });
 
-    $(document).on("click", "#team-submit", function () {
-        
+    $(document).on("click", "#team-submit", function (event) {
+
         event.preventDefault();
 
         isFavorite = false;
@@ -126,13 +168,14 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
-        $("#favorites-button").show()
-        $("#team-logo").show();
-        $("#team-logo").empty();
-        $("#favorites-button").text("Add to Your Favorites");
+        // $("#favorites-button").show()
+        // $("#team-logo").show();
+        // $("#team-logo").empty();
+        // $("#favorites-button").text("Add to Your Favorites");
 
-        displayLogo();
-        $("#team-logo").append("<h2>" + team + "</h3>");
+        displayTeam();
+        // $("#team-logo").append("<h2>" + team + "</h2>");
+        // $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>")
 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
@@ -255,9 +298,5 @@ $(document).ready(function () {
         });
 
     });
-
-    topHeadlines();
-
-    renderFavorites(favoriteTeams);
 
 });

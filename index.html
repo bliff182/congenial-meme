@@ -23,12 +23,12 @@
 <body>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="teamSelect" tabindex="-1" role="dialog" aria-labelledby="teamSelectLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">What team are you looking for?</h5>
+                    <h5 class="modal-title" id="teamSelectLabel">What team are you looking for?</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -136,7 +136,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="news.html" id="news">News<span class="sr-only">(current)</span></a>
                 </li>
-                
+
                 <li class="nav-item active dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -160,35 +160,35 @@
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-4" id="superfan-jumbotron">Gridiron Report</h1>
-            <p class="lead">Welcome to Grintiron Report! Get the latest news on your favorite NFL teams and the league as a whole.</p>
+            <p class="lead">Welcome to Gridiron Report, your one-stop-shop for all things related to your favorite NFL
+                teams! See how your team did, shop for tickets, and check out the latest team-specific and leaguewide
+                headlines!</p>
             <hr class="my-4">
-            <p>To get started click on the button below.</p>
+            <p>Click the button below to get started!</p>
             <!-- Button trigger modal -->
             <div class="container">
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-                    Pick Your Favorite Team!
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#teamSelect">
+                    Select a Team!
                 </button>
             </div>
             <h2></h2>
-            <div class="container">
+            <!-- <div class="container">
                 <button type="button" class="btn btn-danger" id="favorites-button">Add to Your Favorites</button>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- end jumbotron -->
 
-    <!-- favorites button -->
-
     <h2></h2>
-    
+
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
                 <div id="team-logo"></div>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-3"></div>
         </div>
     </div>
 
