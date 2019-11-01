@@ -4,12 +4,12 @@ body {
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    /* background-blend-mode: hard-light; */
 }
 
 .jumbotron {
     border: 1px solid #343a40;
     box-shadow: 3px 3px 10px;
+    margin-bottom: 0;
 }
 
 #superfan {
@@ -122,14 +122,3 @@ fa-instagram {
     color: #e9ecef;
     background-color: #343a40;
 }
-
-/* #modal-toggler, #favorites-button {
-    float: left;
-    width: 196.08px;
-    height: 60px;
-    padding: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 20px;
-} */
