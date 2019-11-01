@@ -39,6 +39,7 @@ body {
     background-color: #343a40;
     padding: 15px;
     margin-bottom: 0;
+    border: 1px solid #e9ecef;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     box-shadow: 3px 3px 10px black;
@@ -46,6 +47,7 @@ body {
 
 #scoreboard {
     box-shadow: 3px 3px 10px black;
+    border: 1px solid #e9ecef;
 }
 
 .logo {
@@ -75,6 +77,11 @@ body {
     /* padding: 15px;    */
     box-shadow: 3px 3px 10px black;
     line-height: 150%;
+}
+
+#articles {
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 
 .article-content, #article-header {

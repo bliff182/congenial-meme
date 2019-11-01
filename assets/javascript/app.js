@@ -7,8 +7,6 @@ $(document).ready(function () {
     var teamAbbr;
     var teamDashed;
     var teamLogo;
-    var isFavorite = false;
-    var teamSelected = false;
 
     // local storage variables
     var favoriteTeams = JSON.parse(localStorage.getItem("favoriteTeams"));
@@ -88,13 +86,13 @@ $(document).ready(function () {
         $("#team-logo").append("<h2>" + team + "</h2>");
         $("#team-logo").prepend(logo);
         if (favoriteTeams.indexOf(team) > -1) {
-            $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
+            $("#team-logo").append("<button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
         }
         else {
-            $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
+            $("#team-logo").append("<button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
         }
     }
- 
+
     // ============================================================================================
     // FUNCTION EXECUTION 
     // ============================================================================================
@@ -118,28 +116,25 @@ $(document).ready(function () {
         $("#team-selection").text(team);
     });
 
-    // adding to favorites
+    // adding team to favorites
     $(document).on("click", "#favorites-button", function () {
-        if (!isFavorite && teamSelected) {
-            isFavorite = true;
-            favoriteTeams.push(team);
-            favoriteAbbr.push(teamAbbr);
-            favoriteLogo.push(teamLogo)
+        favoriteTeams.push(team);
+        favoriteAbbr.push(teamAbbr);
+        favoriteLogo.push(teamLogo)
 
-            renderFavorites(favoriteTeams);
+        renderFavorites(favoriteTeams);
 
-            localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
-            localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
-            localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
+        localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
+        localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
+        localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
 
-            // $("#favorites-button").text(team + " Added to Favorites!");
-            $("#favorites-button").remove();
-            $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
-        }
+        // $("#favorites-button").text(team + " Added to Favorites!");
+        $("#favorites-button").remove();
+        $("#team-logo").append("<button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
+        // }
     });
-    // removing from favorites
+    // removing team from favorites
     $(document).on("click", "#remove-button", function () {
-        isFavorite = false;
         favoriteTeams.splice(team, 1);
         favoriteAbbr.splice(teamAbbr, 1);
         favoriteLogo.splice(teamLogo, 1);
@@ -148,15 +143,14 @@ $(document).ready(function () {
         localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
         localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
         $("#remove-button").remove();
-        $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
+        $("#team-logo").append("<button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
     });
 
     $(document).on("click", "#team-submit", function (event) {
 
         event.preventDefault();
 
-        isFavorite = false;
-        teamSelected = true;
+        // html to edit
         $("#team-selection").text(team);
         $("#team-selection").text("Select Your Team!");
         $("#articles").empty();
@@ -168,15 +162,10 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
-        // $("#favorites-button").show()
-        // $("#team-logo").show();
-        // $("#team-logo").empty();
-        // $("#favorites-button").text("Add to Your Favorites");
-
+        
         displayTeam();
-        // $("#team-logo").append("<h2>" + team + "</h2>");
-        // $("#team-logo").append("<p><button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>")
 
+        // begin ajax 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
         var seatgeekUrl = "https://api.seatgeek.com/2/events?performers.slug=" + teamDashed + "&client_id=MTkwNTE3NjN8MTU3MTg1OTczOS4yNA";
@@ -225,12 +214,11 @@ $(document).ready(function () {
 
             var teamEvent = response.events;
 
-            var time = teamEvent[0].datetime_local; // NEEDS TO BE CONVERTED
-            // console.log(time.split("T"))
+            var time = teamEvent[0].datetime_local;
+            // converting time from ISO format
             var newTime = time.split("T");
-            console.log(newTime[0]);
             var newerTime = newTime[0].split("-");
-            console.log(newerTime);
+            var date = newerTime[1] + "-" + newerTime[2] + "-" + newerTime[0];
 
 
             // dynamically generate elements
@@ -240,7 +228,7 @@ $(document).ready(function () {
             var nextMatchup = $("<p class='seatgeek-text' id='next-matchup'>").text(teamEvent[0].short_title);
             var nextVenue = $("<p class='seatgeek-text' id='next-venue'>").text("Location: " + teamEvent[0].venue.name);
             var venueAddress = $("<p class='seetgeek-text' id='venue-address'>").text(teamEvent[0].venue.extended_address);
-            var eventTime = $("<p class='seatgeek-text' id='event-time'>").text(newerTime[1] + "-" + newerTime[2] + "-" + newerTime[0]);
+            var eventTime = $("<p class='seatgeek-text' id='event-time'>").text(date);
             var ticketsUrl = $("<p class='seatgeek-text' id='tickets-url'>").html("<a href=" + teamEvent[0].url + " target='_blank'>Buy Tickets Here</a>");
 
             seatgeekDiv.append("<h3 class='seatgeek-text' id='seatgeek-header'>Next Matchup:</h3>");
@@ -268,8 +256,6 @@ $(document).ready(function () {
 
             var gameStats = response.scoreboard.gameScore;
 
-            var away = gameStats[0].game.awayTeam.City + " " + gameStats[0].game.awayTeam.Name;
-            var home = gameStats[0].game.homeTeam.City + " " + gameStats[0].game.homeTeam.Name;
             var awayAbbr = gameStats[0].game.awayTeam.Abbreviation;
             var homeAbbr = gameStats[0].game.homeTeam.Abbreviation;
             var quarterScore = gameStats[0].quarterSummary.quarter;
