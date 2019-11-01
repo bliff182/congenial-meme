@@ -1,9 +1,14 @@
 $(document).ready(function () {
+    // ============================================================================================
+    // VARIABLES
+    // ============================================================================================
 
     var team;
     var teamAbbr;
     var teamDashed;
     var teamLogo;
+
+    // local storage variables
     var favoriteTeams = JSON.parse(localStorage.getItem("favoriteTeams"));
     if (!Array.isArray(favoriteTeams)) {
         favoriteTeams = [];
@@ -16,10 +21,12 @@ $(document).ready(function () {
     if (!Array.isArray(favoriteLogo)) {
         favoriteLogo = [];
     }
-    var isFavorite = false;
-    var teamSelected = false;
 
+    // ============================================================================================
+    // FUNCTIONS 
+    // ============================================================================================
 
+    // add favorite teams to dropdown in navbar
     function renderFavorites(favoriteTeams) {
         $("#favorites-dropdown").empty();
         for (var i = 0; i < favoriteTeams.length; i++) {
@@ -34,7 +41,7 @@ $(document).ready(function () {
         }
     }
 
-    // for news page
+    // add articles to news.html
     function topHeadlines() {
         var newsUrl = "https://newsapi.org/v2/top-headlines?country=us&category=sports&q=nfl&apiKey=661826d0bdfe4381ace783308aa9216c"
         $.ajax({
@@ -69,17 +76,35 @@ $(document).ready(function () {
         });
     }
 
-    function displayLogo () {
+    // display name and logo of selected team 
+    function displayTeam() {
+        $("#team-logo").empty();
+        $("#team-logo").show();
         var logo = $("<img>");
         logo.attr("src", teamLogo);
         logo.addClass("logo");
+        $("#team-logo").append("<h2>" + team + "</h2>");
         $("#team-logo").prepend(logo);
+        if (favoriteTeams.indexOf(team) > -1) {
+            $("#team-logo").append("<button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
+        }
+        else {
+            $("#team-logo").append("<button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
+        }
     }
+
+    // ============================================================================================
+    // FUNCTION EXECUTION 
+    // ============================================================================================
 
     $("#scoreboard-div").hide();
     $("#articles").hide();
     $("#favorites-button").hide();
     $("#team-logo").hide();
+
+    topHeadlines();
+
+    renderFavorites(favoriteTeams);
 
     // $(".dropdown-item").on("click", function () {
     $(document).on("click", ".dropdown-item", function () {
@@ -91,30 +116,41 @@ $(document).ready(function () {
         $("#team-selection").text(team);
     });
 
-    // adding to favorites
-    $("#favorites-button").on("click", function () {
-        if (!isFavorite && teamSelected) {
-            isFavorite = true;
-            favoriteTeams.push(team);
-            favoriteAbbr.push(teamAbbr);
-            favoriteLogo.push(teamLogo)
+    // adding team to favorites
+    $(document).on("click", "#favorites-button", function () {
+        favoriteTeams.push(team);
+        favoriteAbbr.push(teamAbbr);
+        favoriteLogo.push(teamLogo)
 
-            renderFavorites(favoriteTeams);
+        renderFavorites(favoriteTeams);
 
-            localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
-            localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
-            localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
+        localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
+        localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
+        localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
 
-            $("#favorites-button").text(team + " Added to Favorites!");
-        }
+        // $("#favorites-button").text(team + " Added to Favorites!");
+        $("#favorites-button").remove();
+        $("#team-logo").append("<button type='button' class='btn btn-danger' id='remove-button'>Remove From Favorites</button>");
+        // }
+    });
+    // removing team from favorites
+    $(document).on("click", "#remove-button", function () {
+        favoriteTeams.splice(team, 1);
+        favoriteAbbr.splice(teamAbbr, 1);
+        favoriteLogo.splice(teamLogo, 1);
+        renderFavorites(favoriteTeams);
+        localStorage.setItem("favoriteTeams", JSON.stringify(favoriteTeams));
+        localStorage.setItem("favoriteAbbr", JSON.stringify(favoriteAbbr));
+        localStorage.setItem("favoriteLogo", JSON.stringify(favoriteLogo));
+        $("#remove-button").remove();
+        $("#team-logo").append("<button type='button' class='btn btn-danger' id='favorites-button'>Add to Your Favorites</button>");
     });
 
-    $(document).on("click", "#team-submit", function () {
-        
+    $(document).on("click", "#team-submit", function (event) {
+
         event.preventDefault();
 
-        isFavorite = false;
-        teamSelected = true;
+        // html to edit
         $("#team-selection").text(team);
         $("#team-selection").text("Select Your Team!");
         $("#articles").empty();
@@ -126,14 +162,10 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
-        $("#favorites-button").show()
-        $("#team-logo").show();
-        $("#team-logo").empty();
-        $("#favorites-button").text("Add to Your Favorites");
+        
+        displayTeam();
 
-        displayLogo();
-        $("#team-logo").append("<h2>" + team + "</h3>");
-
+        // begin ajax 
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
         var seatgeekUrl = "https://api.seatgeek.com/2/events?performers.slug=" + teamDashed + "&client_id=MTkwNTE3NjN8MTU3MTg1OTczOS4yNA";
@@ -182,12 +214,11 @@ $(document).ready(function () {
 
             var teamEvent = response.events;
 
-            var time = teamEvent[0].datetime_local; // NEEDS TO BE CONVERTED
-            // console.log(time.split("T"))
+            var time = teamEvent[0].datetime_local;
+            // converting time from ISO format
             var newTime = time.split("T");
-            console.log(newTime[0]);
             var newerTime = newTime[0].split("-");
-            console.log(newerTime);
+            var date = newerTime[1] + "-" + newerTime[2] + "-" + newerTime[0];
 
 
             // dynamically generate elements
@@ -197,7 +228,7 @@ $(document).ready(function () {
             var nextMatchup = $("<p class='seatgeek-text' id='next-matchup'>").text(teamEvent[0].short_title);
             var nextVenue = $("<p class='seatgeek-text' id='next-venue'>").text("Location: " + teamEvent[0].venue.name);
             var venueAddress = $("<p class='seetgeek-text' id='venue-address'>").text(teamEvent[0].venue.extended_address);
-            var eventTime = $("<p class='seatgeek-text' id='event-time'>").text(newerTime[1] + "-" + newerTime[2] + "-" + newerTime[0]);
+            var eventTime = $("<p class='seatgeek-text' id='event-time'>").text(date);
             var ticketsUrl = $("<p class='seatgeek-text' id='tickets-url'>").html("<a href=" + teamEvent[0].url + " target='_blank'>Buy Tickets Here</a>");
 
             seatgeekDiv.append("<h3 class='seatgeek-text' id='seatgeek-header'>Next Matchup:</h3>");
@@ -225,8 +256,6 @@ $(document).ready(function () {
 
             var gameStats = response.scoreboard.gameScore;
 
-            var away = gameStats[0].game.awayTeam.City + " " + gameStats[0].game.awayTeam.Name;
-            var home = gameStats[0].game.homeTeam.City + " " + gameStats[0].game.homeTeam.Name;
             var awayAbbr = gameStats[0].game.awayTeam.Abbreviation;
             var homeAbbr = gameStats[0].game.homeTeam.Abbreviation;
             var quarterScore = gameStats[0].quarterSummary.quarter;
@@ -255,9 +284,5 @@ $(document).ready(function () {
         });
 
     });
-
-    topHeadlines();
-
-    renderFavorites(favoriteTeams);
 
 });
