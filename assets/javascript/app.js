@@ -169,7 +169,7 @@ $(document).ready(function () {
         var newsUrl = "https://newsapi.org/v2/everything?qInTitle=" + teamDashed +
             "&language=en&sortBy=publishedAt&from=2019-10-15&apiKey=661826d0bdfe4381ace783308aa9216c";
         var seatgeekUrl = "https://api.seatgeek.com/2/events?performers.slug=" + teamDashed + "&client_id=MTkwNTE3NjN8MTU3MTg1OTczOS4yNA";
-        var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/scoreboard.json?fordate=20191027&team=" + teamAbbr;
+        var mySportsFeedsUrl = "https://api.mysportsfeeds.com/v1.2/pull/nfl/2019-regular/scoreboard.json?fordate=20191103&team=" + teamAbbr;
 
         // NEWS AJAX CALL
         // ========================================================================================
@@ -253,6 +253,7 @@ $(document).ready(function () {
                 "Authorization": "Basic " + btoa("23eb33fc-e785-49c6-854b-caefbc:cfeL!StY!4BSZHk")
             }
         }).then(function (response) {
+            console.log(response);
 
             var gameStats = response.scoreboard.gameScore;
 
