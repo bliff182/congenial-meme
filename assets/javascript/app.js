@@ -253,7 +253,6 @@ $(document).ready(function () {
                 "Authorization": "Basic " + btoa("23eb33fc-e785-49c6-854b-caefbc:cfeL!StY!4BSZHk")
             }
         }).then(function (response) {
-            console.log(response);
 
             var gameStats = response.scoreboard.gameScore;
 
