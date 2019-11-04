@@ -106,7 +106,6 @@ $(document).ready(function () {
 
     renderFavorites(favoriteTeams);
 
-    // $(".dropdown-item").on("click", function () {
     $(document).on("click", ".dropdown-item", function () {
         team = $(this).text();
         teamDashed = team.split(/\s+/).join('-');
@@ -162,7 +161,7 @@ $(document).ready(function () {
         $(".final-score").remove();
         $("#scoreboard-div").show();
         $("#articles").show();
-        
+
         displayTeam();
 
         // begin ajax 
